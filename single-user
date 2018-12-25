@@ -12,6 +12,7 @@ apt-get install python-pip <<-EOF
 y
 EOF
 
+
 echo "installing shadowsocks"
 pip install shadowsocks
 
@@ -42,6 +43,7 @@ else
     echo '     "password":"password1",' >> $config_file_shadowsocks
     echo '     "timeout":600,' >> $config_file_shadowsocks
     echo '     "method":"chacha20"' >> $config_file_shadowsocks
+    echo '}' >> $config_file_shadowsocks
 fi
 
 #give the file permission to be ran
