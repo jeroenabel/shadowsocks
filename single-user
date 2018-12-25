@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #rin with:
-#wget -O - https://raw.githubusercontent.com/QuanTomiZaH/ShadowSocks-Install-script/master/Install%20w%20optimization | bash
+#wget -O - https://raw.githubusercontent.com/jeroenabel/shadowsocks/master/single-user | bash
 
 #Update the machine just in case
 echo "Getting updates for this machine"
