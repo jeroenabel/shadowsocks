@@ -14,7 +14,7 @@ y
 EOF
 
 echo "installing shadowsocks"
-pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip -U #ShadowSocks v. 3.0.0
+pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip -U #ShadowSocks v3.0.0 for AEAD Cipher
 
 #Installing cryptobox for security and speed
 apt-get install python-m2crypto <<-EOF
