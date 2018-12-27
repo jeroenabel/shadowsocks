@@ -14,7 +14,7 @@ y
 EOF
 
 echo "installing shadowsocks"
-pip install shadowsocks
+pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip -U 
 
 #Installing cryptobox for security and speed
 apt-get install python-m2crypto
