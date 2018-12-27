@@ -30,7 +30,9 @@ echo $private_ip
 
 cd /etc
 echo "Creating Config file"
-#Create a new textfile for the config of Shadowsocks(This is not a secure method for adding login credentials. Best option would be to create the file manually using VI or editing the login after creating with a text editor)
+#Create a new textfile for the config of Shadowsocks, edit the passwords manually
+#Edit the file with: nano -w etc/shadowsocks.json
+#Exit with ctrl+x and save the file
 config_file_shadowsocks="shadowsocks.json"
 if [ -e $config_file_shadowsocks ]; then
     echo "file" + $config_file_shadowsocks + " already exists!"
