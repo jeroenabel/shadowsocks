@@ -36,10 +36,6 @@ echo "Creating Config file"
 #Edit the file with: nano -w etc/shadowsocks.json
 #Exit with ctrl+x and save the file
 config_file_shadowsocks="shadowsocks.json"
-if [ -e $config_file_shadowsocks ]; then
-    echo "file" + $config_file_shadowsocks + " already exists!"
-else
-	#Text naar het textbestand schrijven | Hier de verschillende gegevens inzetten als die nodig zijn(poorten en wachtwoorden)
 	echo '{' >> $config_file_shadowsocks
 	echo '     "server":"'$private_ip'",' >> $config_file_shadowsocks
 	echo '     "port_password": {' >> $config_file_shadowsocks #Port and password combination for different connections
@@ -67,9 +63,8 @@ else
 	echo '     "local_port":1080,' >> $config_file_shadowsocks
 	echo '     "timeout":600,' >> $config_file_shadowsocks #10 minutes no response --> timeout
   	echo '     "fast_open": true,' >> $config_file_shadowsocks
-	echo '     "method":"aes-256-gcm"' >> $config_file_shadowsocks #AEAD cipher for increased security
+	echo '     "method":"aes-256-gcm"' >> $config_file_shadowsocks #AEAD cipher (AEAD_AES_256_GCM) for increased security
 	echo '}' >> $config_file_shadowsocks
-fi
 
 #give the file permission to be ran
 chmod u+x $config_file_shadowsocks
@@ -90,7 +85,7 @@ cd /etc
 
 chmod u+x sysctl.conf
 
-#Adding all the settings for the kernel to allow more connections and speed
+#Optimise Linux kernel settings
 echo 'fs.file-max = 51200' >> sysctl.conf
 echo 'net.core.rmem_max = 67108864' >> sysctl.conf
 echo 'net.core.wmem_max = 67108864' >> sysctl.conf
@@ -127,6 +122,16 @@ ufw enable <<-EOF
 y
 EOF
 
-ufw status verbose #Check to see if all rules have been correctly added
+#Check to see if all rules have been correctly added
+ufw status verbose
 
+#Installing Google BBR for added TCP Congestion Control
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh <<-EOF
+y
+EOF
+
+#Check if Google BBR is installed
+lsmod | grep bbr
+
+#Start server
 ssserver -c /etc/shadowsocks.json -d start
