@@ -122,6 +122,7 @@ ufw allow 22    #SSH
 ufw allow 8001:8020/tcp
 ufw allow 8001:8020/udp
 ufw enable
+y
 ufw status verbose #Check to see if all rules have been correctly added
 
 ssserver -c /etc/shadowsocks.json -d start
