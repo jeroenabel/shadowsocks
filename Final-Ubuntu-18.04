@@ -125,13 +125,5 @@ EOF
 #Check to see if all rules have been correctly added
 ufw status verbose
 
-#Installing Google BBR for added TCP Congestion Control
-wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh <<-EOF
-y
-EOF
-
-#Check if Google BBR is installed
-lsmod | grep bbr
-
 #Start server
 ssserver -c /etc/shadowsocks.json -d start
