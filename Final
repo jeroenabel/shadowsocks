@@ -62,7 +62,7 @@ else
 	echo '    },' >> $config_file_shadowsocks
 	echo '     "local_port":1080,' >> $config_file_shadowsocks
 	echo '     "timeout":600,' >> $config_file_shadowsocks #10 minutes no response --> timeout
-  echo '     "fast_open": true,' >> $config_file_shadowsocks
+  	echo '     "fast_open": true,' >> $config_file_shadowsocks
 	echo '     "method":"aes-256-gcm"' >> $config_file_shadowsocks #AEAD cipher for increased security
 	echo '}' >> $config_file_shadowsocks
 fi
