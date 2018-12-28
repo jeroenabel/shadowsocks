@@ -27,7 +27,7 @@ tar xf libsodium-1.0.16.tar.gz && cd libsodium-1.0.16
 ldconfig
 
 #Define a variable to detect the private IP of this machine so it can be added to the config file
-private_ip=$(ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}')
+private_ip=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
 echo $private_ip
 
 cd /etc
