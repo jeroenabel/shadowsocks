@@ -69,9 +69,9 @@ config_file_shadowsocks="shadowsocks.json"
 #give the file permission to be ran
 chmod u+x $config_file_shadowsocks
 
-sed -i "14i /usr/bin/python /usr/local/bin/ssserver -c /etc/shadowsocks.json -d start" rc.local
-
-cd #probably redundant
+#Add a rule to auto-run the ShadowSocks server on Ubuntu restart
+cd /etc
+echo '@reboot /usr/bin/python /usr/local/bin/ssserver -c /etc/shadowsocks.json -d start' >> crontab
 
 #Navigate to the correct path
 cd /etc/security
