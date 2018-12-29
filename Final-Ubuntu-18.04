@@ -113,7 +113,7 @@ sysctl -p
 cd
 
 #Setting up firewall for increased security --> Make sure you allow the ports written in the ports/password combination!
-ufw default deny incoming
+ufw default deny incoming #Default settings, DENY all incoming, ALLOW all outgoing
 ufw default allow outgoing
 ufw allow 22    #SSH
 ufw allow 8001:8020/tcp
@@ -124,6 +124,16 @@ EOF
 
 #Check to see if all rules have been correctly added
 ufw status verbose
+
+#Setup Google BBR Congestion Control Algorithm
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh <<-EOF
+y
+EOF
+#Give the file permission to run
+chmod +x bbr.sh && ./bbr.sh
+
+#Check if Google BBR has bene enabled
+lsmod | grep bbr
 
 #Start server
 ssserver -c /etc/shadowsocks.json -d start
