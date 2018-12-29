@@ -126,11 +126,12 @@ EOF
 ufw status verbose
 
 #Setup Google BBR Congestion Control Algorithm
-wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh <<-EOF
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
+#Give the file permission to run
+chmod +x bbr.sh
+./bbr.sh <<-EOF
 y
 EOF
-#Give the file permission to run
-chmod +x bbr.sh && ./bbr.sh
 
 #Check if Google BBR has bene enabled
 lsmod | grep bbr
