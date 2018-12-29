@@ -33,7 +33,7 @@ echo $private_ip
 cd /etc
 echo "Creating Config file"
 #Create a new textfile for the config of Shadowsocks, edit the passwords manually
-#Edit the file with: nano -w etc/shadowsocks.json
+#Edit the file with: nano -w /etc/shadowsocks.json
 #Exit with ctrl+x and save the file
 config_file_shadowsocks="shadowsocks.json"
 	echo '{' >> $config_file_shadowsocks
